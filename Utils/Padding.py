@@ -1,5 +1,3 @@
-__all__ = [ 'pad', 'unpad' ]
-
 from Crypto.Util.py3compat import *
 
 def pad(data_to_pad, block_size):
