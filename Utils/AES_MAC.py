@@ -19,4 +19,4 @@ def verifyMAC(data, tag):
     tag = bytearray(tag, 'utf-8')
     cmac = CMAC.new(AES_MAC_Key, ciphermod=AES)
     cmac.update(data)
-    cmac.hexverify(tag)
+    cmac.hexverify(tag) # Throw exception when MAC fails
