@@ -1,6 +1,9 @@
 from datetime import datetime
 
-def logMessage(message):
-    with open('messages.log', 'w') as f:
+def logMessage(message, useMac=False):
+    with open('messages.log', 'a') as f:
         now = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
-        f.write(f'{now}|{message}')
+        if useMac:
+            f.write(f'{now} | {message} | with MAC\n')
+        else:
+            f.write(f'{now} | {message}\n')

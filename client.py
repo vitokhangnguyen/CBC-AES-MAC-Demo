@@ -18,9 +18,9 @@ def main():
     print(f'IV:                          {iv}')
     print(f'Encrypted Message:           {encryptedMessage}')
 
-    decryptUrl = 'http://localhost:5000/cbc-aes/mac-decrypt'
-    macDecryptUrl = 'http://localhost:5000/cbc-aes/decrypt'
-    url = decryptUrl if useMac else macDecryptUrl
+    decryptUrl = 'http://localhost:5000/cbc-aes/decrypt'
+    macDecryptUrl = 'http://localhost:5000/cbc-aes/mac-decrypt'
+    url = macDecryptUrl if useMac else decryptUrl
     params = { 'iv': iv, 'encryptedMessage': encryptedMessage }
     if useMac:
         macTag = AES_MAC.generateMAC(encryptedMessage)
@@ -35,8 +35,7 @@ def main():
     responseCode = response.status_code
     print('========== Server Responding ==========')
     print(f'Status Code: {responseCode}')
-    if (responseCode >= 200 and responseCode < 400):
-        print(f'Response Data: {responseText}')
+    print(f'Response Message: {responseText}')
 
 if __name__ == "__main__":
     main()
